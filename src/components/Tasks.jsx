@@ -16,11 +16,10 @@ export default function TasksPage() {
   const handleWatch = (id, url) => {
     setPlaying(prev => ({ ...prev, [id]: url + "?autoplay=1" }));
 
-    // Start 5-second timer only after user clicks Watch
     if (!doneEnabled[id]) {
       setTimeout(() => {
         setDoneEnabled(prev => ({ ...prev, [id]: true }));
-      }, 5000); // 5 seconds
+      }, 10000); // 10 seconds after Watch click
     }
   };
 
@@ -28,9 +27,14 @@ export default function TasksPage() {
     setCompleted(prev => ({ ...prev, [id]: true }));
   };
 
+  const handleSubmitTasks = () => {
+    alert("🎉 All tasks submitted successfully!");
+  };
+
+  const allTasksDone = videos.every(video => completed[video.id]);
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:max-w-4xl mx-auto">
-      {/* Available Tasks Section */}
       <div className="flex items-center justify-center gap-2 mb-6">
         <FaTasks className="text-indigo-600 text-2xl" />
         <h1 className="text-3xl font-bold text-gray-800">Available Tasks</h1>
@@ -76,6 +80,25 @@ export default function TasksPage() {
           </div>
         ))}
       </div>
+
+      {/* Submit Tasks Button */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handleSubmitTasks}
+          disabled={!allTasksDone}
+          className={`px-6 py-3 rounded-lg font-semibold transition ${
+            allTasksDone
+              ? "bg-green-600 text-white hover:bg-green-700"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
+        >
+          Submit Tasks
+        </button>
+       
+        
+        
+      </div>
+       <br></br>
       <Nav></Nav>
     </div>
   );
