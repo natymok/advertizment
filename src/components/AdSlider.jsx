@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import Profile from './Profile'
 export default function AdSlider() {
   const images = Array(8).fill(
     "https://i0.wp.com/iamelectric.eu/wp-content/uploads/2019/11/skuter-elektryczny-iamelectric-havana_red_1-kopia.png?fit=800%2C800&ssl=1"
@@ -43,10 +42,8 @@ export default function AdSlider() {
 
   return (
     <div className="relative overflow-hidden  w-full py-4" ref={containerRef}>
-      <Profile className=' '></Profile>
-      <br></br>
-      <br></br>
-      <br></br>
+   
+
       {/* Left Button */}
       <button
         onClick={() => handleScroll("left")}

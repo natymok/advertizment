@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from './Profile'
+import Navbar from "./Navbar"
 const transactions = [
   {
     id: "TXN001",
@@ -58,7 +58,7 @@ export default function TransactionHistoryPage() {
        <h1 className="text-2xl font-bold text-gray-800 mb-6">
         Transaction History
       </h1>
-      <Profile></Profile>
+      
 
     </div>
      
@@ -135,6 +135,7 @@ export default function TransactionHistoryPage() {
           </div>
         ))}
       </div>
+      <Navbar></Navbar>
     </div>
   );
 }

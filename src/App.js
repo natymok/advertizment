@@ -10,15 +10,24 @@ import  SignUP from './components/SignUp'
 import SignIn from "./components/SignIn";
 import Transaction from "./components/Transaction"
 import WithdrawPage from "./components/Withdraw";
+import Navabar from "./components/Navbar"
+import Me from "./components/Profiles"
+import Task from "./components/Tasks"
 function App() {
    const [selectedLevel, setSelectedLevel] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [balance, setBalance] = useState(0);
 
   const levelAmounts = {
-    M1: [3000, 9000, 20000],
-    M2: [22000, 35000, 60000],
-    M3: [65000, 80000, 100000],
+    L1: ["3000"],
+    L2: ["8000"],
+    L3: ["25,500"],
+    L4: ["58,000"],
+    L5: ["135,000"],
+    L6: ["210,000"],
+    L7: ["550,000"],
+    L8: ["950000"],
+    L9: ["1,350,000"]
   };
 
   const handleLevelSelect = (level) => {
@@ -41,6 +50,8 @@ function App() {
             <Route path="/signup" element={<SignUP />} />
             <Route path="/signin" element={<SignIn/>}></Route>
             <Route path="/withdraw" element={<WithdrawPage/>} />
+             <Route path="/profile" element={<Me/>} />
+             <Route path="/tasks" element={<Task/>} />
 
             <Route path="/dashboard" element={
               <>
@@ -61,9 +72,8 @@ function App() {
         />
       )}
 
-      <VideoReward onReward={handleRewardClaim} />
 
-              
+        <Navabar></Navabar>      
               
               
               

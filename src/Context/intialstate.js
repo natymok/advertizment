@@ -1,7 +1,7 @@
 export const initialstate = {
   token: null,
-  copmany: null,
-  stock: null,
+  joined: null,
+  level: null,
   newcompany: null,
   companyName: null,
   TotalSell: 0,

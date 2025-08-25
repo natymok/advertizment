@@ -5,7 +5,7 @@ const reducer = (state, action) => {
         ...state,
         token: action.token,
       };
-    case 'companyName':
+    case 'joined':
       return {
         ...state,
         companyName: action.companyName,
@@ -14,7 +14,7 @@ const reducer = (state, action) => {
     case 'transaction':
       return {
         ...state,
-        transaction: action.transaction,
+        joined: action.joined,
       };
 
     case 'companyEmail':

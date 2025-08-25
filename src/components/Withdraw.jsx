@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Profile from './Profile'
 import { useNavigate } from "react-router-dom";
 const WithdrawPage = () => {
-  const amounts = [100, 500, 1000, 2000, 5000]; // amounts in Birr
+  const amounts = [600, 1600 ,5000 ,18000 ,30000, 800000, 1500000, 200000
+]; // amounts in Birr
   const [selectedAmount, setSelectedAmount] = useState(null);
     const navigate = useNavigate();
   const handleWithdraw = () => {
@@ -20,7 +20,7 @@ const WithdrawPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
      <dic className=' flex justify-between'>
          <h1 className="text-3xl font-bold mb-6 text-indigo-600">Withdraw Money</h1>
-         <Profile></Profile>
+      
      </dic>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full max-w-md">

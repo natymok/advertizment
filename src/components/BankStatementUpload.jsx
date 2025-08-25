@@ -7,7 +7,7 @@ export default function BankStatementUpload({
   setSelectedAmount,
 }) {
   const [file, setFile] = useState(null);
-  const [{ balance }, dispatch] = useStateValue();
+  const [{ balance ,joined}, dispatch] = useStateValue();
   const handleSubmit = () => {
     if (!selectedAmount) {
       alert("Please select an amount!");
@@ -17,9 +17,7 @@ export default function BankStatementUpload({
       alert("Please upload a transaction detail file!");
       return;
     }
-    alert(
-      `Submitted for ${level} with amount ${selectedAmount} birr and file: ${file.name}`
-    );
+     
       dispatch({
             type: 'balance',
             balance: selectedAmount,

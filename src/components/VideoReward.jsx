@@ -63,7 +63,7 @@ export default function VideoReward({ onReward }) {
       <button
         
         onClick={claimReward}
-        className="w-full sm:w-auto px-4 py-2 bg-gray-500 text-white rounded hover:bg-green-600"
+        className="w-full sm:w-auto px-4 py-2 bg-gray-500 text-white rounded"
       >
         Tasks
       </button>
