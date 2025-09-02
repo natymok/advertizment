@@ -13,6 +13,7 @@ import WithdrawPage from "./components/Withdraw";
 import Navabar from "./components/Navbar"
 import Me from "./components/Profiles"
 import Task from "./components/Tasks"
+import Menu from "./components/Menu"
 function App() {
    const [selectedLevel, setSelectedLevel] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(null);
@@ -59,8 +60,9 @@ function App() {
               <AdSlider />
              
 
-         <BalanceCard balance={balance} />
-
+        {/* <BalanceCard balance={balance} />*/} 
+        <Menu></Menu>
+        <br></br>
       <LevelSelector onSelect={handleLevelSelect} />
 
       {selectedLevel && (

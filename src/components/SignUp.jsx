@@ -5,6 +5,7 @@ export default function SignUpPage({ onSignUp }) {
     phone: "",
     password: "",
     confirmPassword: "",
+    invitaionCode:""
   });
 
   const handleChange = (e) => {
@@ -71,7 +72,20 @@ export default function SignUpPage({ onSignUp }) {
               className="w-full rounded-xl border border-gray-300 px-4 py-2 text-base focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
             />
           </div>
-
+             <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              Invitation Code
+            </label>
+            <input
+              type="text"
+              name="invitaionCode"
+              value={formData.invitaionCode}
+              onChange={handleChange}
+              required
+              placeholder="please enter your invitaion code here "
+              className="w-full rounded-xl border border-gray-300 px-4 py-2 text-base focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            />
+          </div>
           {/* Submit Button */}
           <button
             type="submit"

@@ -1,85 +1,26 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import React, { useState, useEffect } from "react";
+import img1 from '../Images/202504221726484711494461.png';
+import img2 from '../Images/img2.png';
+
 export default function AdSlider() {
-  const images = Array(8).fill(
-    "https://i0.wp.com/iamelectric.eu/wp-content/uploads/2019/11/skuter-elektryczny-iamelectric-havana_red_1-kopia.png?fit=800%2C800&ssl=1"
-  );
-
-  const [offset, setOffset] = useState(0);
-  const [maxOffset, setMaxOffset] = useState(0);
-
-  const containerRef = useRef(null);
-  const itemRef = useRef(null);
+  const images = [img1, img2];
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    if (containerRef.current && itemRef.current) {
-      const containerWidth = containerRef.current.offsetWidth;
-      const itemWidth = itemRef.current.getBoundingClientRect().width + 16; // 16px gap from space-x-4
-      const totalWidth = images.length * itemWidth;
+    const interval = setInterval(() => {
+      setCurrent(prev => (prev + 1) % images.length);
+    }, 3000);
 
-      const visibleItems = Math.floor(containerWidth / itemWidth);
-      const minOffset = -(totalWidth - visibleItems * itemWidth);
-
-      setMaxOffset(minOffset >= 0 ? 0 : minOffset);
-    }
-  }, [images.length]);
-
-  const handleScroll = (direction) => {
-    if (!itemRef.current) return;
-
-    const itemWidth = itemRef.current.getBoundingClientRect().width + 16;
-    setOffset((prev) => {
-      let newOffset =
-        direction === "left" ? prev + itemWidth : prev - itemWidth;
-
-      if (newOffset > 0) newOffset = 0; // stop at start
-      if (newOffset < maxOffset) newOffset = maxOffset; // stop at end
-
-      return newOffset;
-    });
-  };
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="relative overflow-hidden  w-full py-4" ref={containerRef}>
-   
-
-      {/* Left Button */}
-      <button
-        onClick={() => handleScroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow z-10 hover:bg-gray-200"
-      >
-        <ChevronLeftIcon className="h-6 w-6" />
-      </button>
-
-      {/* Images */}
-      <motion.div
-        className="flex space-x-4"
-        animate={{ x: offset }}
-        transition={{ type: "spring", stiffness: 60 }}
-      >
-        {images.map((src, i) => (
-          <div
-            key={i}
-            ref={i === 0 ? itemRef : null} // measure only first item
-            className="w-64 sm:w-72 md:w-80 h-30 sm:h-48 flex-shrink-0 rounded-lg shadow bg-gray-200"
-          >
-            <img
-              src={src}
-              alt={`Ad ${i + 1}`}
-              className="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-        ))}
-      </motion.div>
-
-      {/* Right Button */}
-      <button
-        onClick={() => handleScroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow z-10 hover:bg-gray-200"
-      >
-        <ChevronRightIcon className="h-6 w-6" />
-      </button>
+    <div className="relative w-full h-64 sm:h-80 md:h-96 overflow-hidden rounded-xl shadow-lg flex justify-center">
+      <img
+        src={images[current]}
+        alt={`Slide ${current}`}
+        className="w-full sm:w-[80%] md:w-[65%] h-full object-cover rounded-xl transition-all duration-500"
+      />
     </div>
   );
 }
