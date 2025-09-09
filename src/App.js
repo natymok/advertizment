@@ -8,6 +8,7 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import  SignUP from './components/SignUp'
 import SignIn from "./components/SignIn";
+import Bank from "./components/AddBank";
 import Transaction from "./components/Transaction"
 import WithdrawPage from "./components/Withdraw";
 import Navabar from "./components/Navbar"
@@ -41,18 +42,20 @@ function App() {
   };
 
   return (
-<div className="min-h-screen bg-gray-100 p-4 sm:p-6">
-      <h1 className="text-xl sm:text-2xl font-bold mb-4 text-indigo-500">DIX Advertising</h1>
+<div className="min-h-screen bg p-4 sm:p-6  bg-contain  bg-center "  style={{ backgroundImage: "url('https://www.nio.com/cdn-static/images/0dd8669f3ddd9f0504ea7155f0fc2397ee8a90d8ef86c23275b7995aba023c01/et9-2024/performance/performance-hero-desktop.jpg')" }}>
+      <h1 className="text-xl sm:text-2xl font-bold mb-4 text-white">Nio Advertising</h1>
         <AnimatePresence>
           <Routes>
 
             <Route path="/" element={<SignUP />} />
             <Route path="/transactions" element={<Transaction/>} />
             <Route path="/signup" element={<SignUP />} />
+            <Route path="/signup/:inviteCode" element={<SignUP />} />
             <Route path="/signin" element={<SignIn/>}></Route>
             <Route path="/withdraw" element={<WithdrawPage/>} />
-             <Route path="/profile" element={<Me/>} />
-             <Route path="/tasks" element={<Task/>} />
+            <Route path="/profile" element={<Me/>} />
+            <Route path="/tasks" element={<Task/>} />
+            <Route path="/bank" element={<Bank/>} />
 
             <Route path="/dashboard" element={
               <>
