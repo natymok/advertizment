@@ -15,6 +15,7 @@ import Navabar from "./components/Navbar"
 import Me from "./components/Profiles"
 import Task from "./components/Tasks"
 import Menu from "./components/Menu"
+import Deposit from "./components/Deposit"
 function App() {
    const [selectedLevel, setSelectedLevel] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(null);
@@ -48,6 +49,7 @@ function App() {
           <Routes>
 
             <Route path="/" element={<SignUP />} />
+            <Route path="/deposits" element={<Deposit/>} />
             <Route path="/transactions" element={<Transaction/>} />
             <Route path="/signup" element={<SignUP />} />
             <Route path="/signup/:inviteCode" element={<SignUP />} />
@@ -68,14 +70,7 @@ function App() {
         <br></br>
       <LevelSelector onSelect={handleLevelSelect} />
 
-      {selectedLevel && (
-        <BankStatementUpload
-          level={selectedLevel}
-          amounts={levelAmounts[selectedLevel]}
-          selectedAmount={selectedAmount}
-          setSelectedAmount={setSelectedAmount}
-        />
-      )}
+    
 
 
         <Navabar></Navabar>      

@@ -21,7 +21,7 @@ export default function BankAccountPage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await axiosinstance.post("/bank-account", formData, {
+      const res = await axiosinstance.post("/addBank", formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

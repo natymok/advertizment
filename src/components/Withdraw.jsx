@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavBar from './Navbar'
 const WithdrawPage = () => {
   const amounts = [600, 1600 ,5000 ,18000 ,30000, 800000, 1500000, 200000
 ]; // amounts in Birr
@@ -46,6 +47,7 @@ const WithdrawPage = () => {
       >
         Withdraw
       </button>
+      <NavBar></NavBar>
     </div>
   );
 };

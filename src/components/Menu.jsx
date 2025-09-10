@@ -20,7 +20,7 @@ export default function ActionMenu() {
   }, []);
 
   const menuItems = [
-    { name: "Recharge", icon: <FaWallet />, path: "/recharge" },
+    { name: "Deposits", icon: <FaWallet />, path: "/deposits" },
     { name: "Withdraw", icon: <FaMoneyCheckAlt />, path: "/withdraw" },
     { name: "Invite Friends", icon: <FaUserPlus />, path: null },
     { name: "Company Profile", icon: <FaBuilding />, path: "/company-profile" },
