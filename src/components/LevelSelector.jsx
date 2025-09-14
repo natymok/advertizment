@@ -4,15 +4,15 @@ import { FaLock, FaCheckCircle } from "react-icons/fa";
 import axiosinstance from "./Axios/Axios";
 import { useNavigate } from "react-router-dom";
 const levels = [
-  { id: "L1", range: "3,000 birr" },
-  { id: "L2", range: "8,000 birr" },
-  { id: "L3", range: "25,500 birr" },
-  { id: "L4", range: "58,000 birr" },
-  { id: "L5", range: "135,000 birr" },
-  { id: "L6", range: "210,000 birr" },
-  { id: "L7", range: "550,000 birr" },
-  { id: "L8", range: "950,000 birr" },
-  { id: "L9", range: "1,350,000 birr" },
+  { id: "L1", range: 3000 },
+  { id: "L2", range: 8000 },
+  { id: "L3", range: 25500 },
+  { id: "L4", range: 58000 },
+  { id: "L5", range: 135000 },
+  { id: "L6", range: 210000 },
+  { id: "L7", range: 550000 },
+  { id: "L8", range: 950000 },
+  { id: "L9", range: 1350000 },
 ];
 
 export default function LevelSelector() {

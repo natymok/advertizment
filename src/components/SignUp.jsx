@@ -35,6 +35,7 @@ export default function SignUpPage({ onSignUp }) {
         setError("");
         setTimeout(() => setMessage(""), 3000);
       } else {
+        console.log(res,'the resss')
         setError(res.data.error || "Something went wrong");
         setMessage("");
         setTimeout(() => setError(""), 3000);
