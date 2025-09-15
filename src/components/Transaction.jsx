@@ -1,44 +1,13 @@
-import React from "react";
-import Navbar from "./Navbar"
-const transactions = [
-  {
-    id: "TXN001",
-    date: "2025-08-16",
-    type: "Deposit",
-    amount: 250.0,
-    status: "Processed",
-  },
-  {
-    id: "TXN002",
-    date: "2025-08-15",
-    type: "Withdraw",
-    amount: 120.0,
-    status: "In Progress",
-  },
-  {
-    id: "TXN003",
-    date: "2025-08-14",
-    type: "Payment",
-    amount: 50.0,
-    status: "Failed",
-  },
-  {
-    id: "TXN004",
-    date: "2025-08-13",
-    type: "Deposit",
-    amount: 500.0,
-    status: "Processed",
-  },
-  {
-    id: "TXN005",
-    date: "2025-08-12",
-    type: "Withdraw",
-    amount: 200.0,
-    status: "Processed",
-  },
-];
+import React, { useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import axiosinstance from "./Axios/Axios"; // your pre-configured axios instance
 
 export default function TransactionHistoryPage() {
+  const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // Decide badge color
   const getStatusClasses = (status) => {
     switch (status) {
       case "Processed":
@@ -52,20 +21,55 @@ export default function TransactionHistoryPage() {
     }
   };
 
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axiosinstance.get("/user/withdraw", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setTransactions(res.data || []);
+        setError("");
+      } catch (err) {
+        console.error(err);
+        setError(
+          err.response?.data?.error || "Failed to load transactions. Try again."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <p className="text-gray-600 text-lg">Loading transactions…</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+        <p className="text-red-500 text-lg mb-4">{error}</p>
+        <Navbar />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
-    <div className="flex justify-between">
-       <h1 className="text-2xl font-bold text-gray-800 mb-6">
-        Transaction History
-      </h1>
-      
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">
+          Transaction History
+        </h1>
+      </div>
 
-    </div>
-     
-      
-      
-
-      <div className="overflow-x-auto">
+      {/* Desktop / Tablet Table */}
+      <div className="overflow-x-auto hidden sm:block">
         <table className="min-w-full bg-white rounded-lg shadow-md">
           <thead className="bg-gray-100">
             <tr>
@@ -79,7 +83,7 @@ export default function TransactionHistoryPage() {
                 Type
               </th>
               <th className="text-right px-4 py-2 font-medium text-gray-600">
-                Amount ($)
+                Amount (Birr)
               </th>
               <th className="text-left px-4 py-2 font-medium text-gray-600">
                 Status
@@ -90,10 +94,12 @@ export default function TransactionHistoryPage() {
             {transactions.map((txn) => (
               <tr key={txn.id} className="border-b last:border-b-0">
                 <td className="px-4 py-3">{txn.id}</td>
-                <td className="px-4 py-3">{txn.date}</td>
+                <td className="px-4 py-3">
+                  {new Date(txn.date).toLocaleDateString()}
+                </td>
                 <td className="px-4 py-3">{txn.type}</td>
                 <td className="px-4 py-3 text-right font-semibold">
-                  ${txn.amount.toFixed(2)}
+                  {txn.amount?.toFixed(2)} Birr
                 </td>
                 <td className="px-4 py-3">
                   <span
@@ -119,11 +125,15 @@ export default function TransactionHistoryPage() {
           >
             <div>
               <p className="font-semibold text-gray-800">{txn.type}</p>
-              <p className="text-sm text-gray-500">{txn.date}</p>
+              <p className="text-sm text-gray-500">
+                {new Date(txn.date).toLocaleDateString()}
+              </p>
               <p className="text-sm text-gray-500">{txn.id}</p>
             </div>
             <div className="text-right">
-              <p className="font-semibold text-gray-800">${txn.amount.toFixed(2)}</p>
+              <p className="font-semibold text-gray-800">
+                {txn.amount?.toFixed(2)} Birr
+              </p>
               <span
                 className={`inline-block mt-1 px-2 py-1 text-sm font-medium rounded-full ${getStatusClasses(
                   txn.status
@@ -135,7 +145,8 @@ export default function TransactionHistoryPage() {
           </div>
         ))}
       </div>
-      <Navbar></Navbar>
+
+      <Navbar />
     </div>
   );
 }

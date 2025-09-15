@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axiosinstance from "./Axios/Axios";
+import Navbar from './Navbar'
 import {
   FaWallet,
   FaSignOutAlt,
@@ -104,7 +105,7 @@ export default function WalletDashboard() {
         <motion.button
           whileHover={{ y: -3 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => navigate("/transaction")}
+          onClick={() => navigate("/transactions")}
           className="flex flex-col items-center justify-center bg-white rounded-2xl shadow p-5 hover:shadow-lg transition"
         >
           <FaExchangeAlt className="text-2xl text-blue-500 mb-2" />
@@ -121,6 +122,7 @@ export default function WalletDashboard() {
           <span className="font-medium text-gray-700">Withdraw</span>
         </motion.button>
       </div>
+      <Navbar></Navbar>
     </div>
   );
 }

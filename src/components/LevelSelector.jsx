@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaLock, FaCheckCircle } from "react-icons/fa";
 import axiosinstance from "./Axios/Axios";
 import { useNavigate } from "react-router-dom";
+
 const levels = [
   { id: "L1", range: 3000 },
   { id: "L2", range: 8000 },
@@ -19,55 +20,49 @@ export default function LevelSelector() {
   const navigate = useNavigate();
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [refNumber, setRefNumber] = useState("");
-  const [message, setMessage] = useState(""); // success
-  const [error, setError] = useState("");     // error
-  
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit =async (e,amount) => {
+  const handleSubmit = async (e, amount) => {
+    e.preventDefault();
     if (!refNumber.trim()) {
-      setError("error");
+      setError("Please enter a transaction reference.");
       return;
     }
-     e.preventDefault();
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const res = await axiosinstance.post("/user/deposit",  {
-      amount: amount,          // single value
-      referenceNO: refNumber, // another single value
-      level: selectedLevel.id, // another field
-    }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axiosinstance.post(
+        "/user/deposit",
+        {
+          amount: amount,
+          referenceNO: refNumber,
+          level: selectedLevel.id,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       if (res.status === 200) {
         setMessage(res.data.message || "✅ Deposited successfully!");
         setError("");
         setTimeout(() => {
-            navigate('/deposits')
-           setLoading(false);
-            setMessage("");
-       
+          navigate("/deposits");
+          setLoading(false);
+          setMessage("");
         }, 2000);
       } else {
         setError(res.data.error || "Something went wrong");
         setLoading(false);
         setMessage("");
-        setTimeout(() => setError(""), 3000);
       }
     } catch (err) {
-       setLoading(false);
+      setLoading(false);
       setError(err.response?.data?.error || "Server error occurred");
       setMessage("");
-      setTimeout(() => setError(""), 3000);
     }
-
-    
-    
-
-   
-   
   };
 
   return (
@@ -119,12 +114,15 @@ export default function LevelSelector() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
             >
+              {/* Close button */}
               <button
                 onClick={() => setSelectedLevel(null)}
                 className="absolute top-3 right-3 text-gray-500 hover:text-red-500"
               >
                 ✕
               </button>
+
+              {/* Level Info */}
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
                 {selectedLevel.id}
               </h2>
@@ -133,6 +131,20 @@ export default function LevelSelector() {
                 <span className="font-semibold">{selectedLevel.range}</span>
               </p>
 
+              {/* ===== Bank Details ===== */}
+              <div className="mb-4 border rounded-lg p-4 bg-gray-50">
+                <p className="font-semibold text-gray-800 mb-2">
+                  💳 Bank Deposit Details
+                </p>
+                <p className="text-gray-700">
+                  <span className="font-bold">CBE:</span> 100036571212712
+                </p>
+                <p className="text-gray-700">
+                  <span className="font-bold">Telebirr:</span> 0942634432
+                </p>
+              </div>
+
+              {/* Transaction Reference */}
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Transaction Reference
               </label>
@@ -146,7 +158,7 @@ export default function LevelSelector() {
 
               {/* Success / Error Messages */}
               <AnimatePresence>
-                {message  && (
+                {message && (
                   <motion.p
                     className="text-green-600 font-semibold mb-4"
                     initial={{ opacity: 0, y: -10 }}
@@ -168,8 +180,9 @@ export default function LevelSelector() {
                 )}
               </AnimatePresence>
 
+              {/* Submit Button */}
               <motion.button
-                onClick={(e) => handleSubmit(e,selectedLevel.range)}
+                onClick={(e) => handleSubmit(e, selectedLevel.range)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 disabled={loading}

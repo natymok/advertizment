@@ -18,10 +18,12 @@ export default function SignInPage({ onSignIn }) {
   };
 
   const handleSignIn = async (e) => {
+   console.log("formData:", formData);
+
     e.preventDefault();
     try {
       const res = await axiosinstance.post("/Signin", formData);
-
+       console.log('suppp')
       if (res.status === 200) {
         // Assuming backend returns { message, token }
         setMessage(res.data.message || "✅ Signed in successfully!");
@@ -45,6 +47,7 @@ export default function SignInPage({ onSignIn }) {
         setTimeout(() => setError(""), 3000);
       }
     } catch (err) {
+      console.log(err)
       setError(err.response?.data?.error || "Server error occurred");
       setMessage("");
       setTimeout(() => setError(""), 3000);
