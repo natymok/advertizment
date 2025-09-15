@@ -11,7 +11,7 @@ import { FaHome, FaTasks, FaTrophy, FaUser } from "react-icons/fa";
 const navItems = [
   { id: "home", label: "Home", icon: <FaHome className="h-5 w-5" />, path: "/dashboard" },
   { id: "tasks", label: "Tasks", icon: <FaTasks className="h-5 w-5" />, path: "/tasks" },
-  { id: "level", label: "Level", icon: <FaTrophy className="h-5 w-5" />, path: "/dashboard" },
+  { id: "level", label: "About Nio", icon: <FaTrophy className="h-5 w-5" />, path: "/about" },
   { id: "profile", label: "Profile", icon: <FaUser className="h-5 w-5" />, path: "/profile" },
 ];
 

@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const levels = [
   { id: "L1", range: 3000 ,reward:100},
-  { id: "L2", range: 8000 ,reward:200},
-  { id: "L3", range: 25500,reward:300 },
-  { id: "L4", range: 58000 ,reward:400},
-  { id: "L5", range: 135000 ,reward:500},
-  { id: "L6", range: 210000 ,reward:600},
-  { id: "L7", range: 550000,reward:700 },
-  { id: "L8", range: 950000 ,reward:800},
-  { id: "L9", range: 1350000 ,reward:900},
+  { id: "L2", range: 8000 ,reward:260},
+  { id: "L3", range: 25500,reward:840 },
+  { id: "L4", range: 58000 ,reward:1950},
+  { id: "L5", range: 135000 ,reward:4500},
+  { id: "L6", range: 210000 ,reward:7000},
+  { id: "L7", range: 550000,reward:18500 },
+  { id: "L8", range: 950000 ,reward:32000},
+  { id: "L9", range: 1350000 ,reward:45000},
 ];
 
 export default function LevelSelector() {

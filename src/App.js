@@ -4,6 +4,7 @@ import LevelSelector from "./components/LevelSelector";
 import BankStatementUpload from "./components/BankStatementUpload";
 import VideoReward from "./components/VideoReward";
 import BalanceCard from "./components/BalanceCard";
+import About from './components/About'
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import  SignUP from './components/SignUp'
@@ -49,6 +50,7 @@ function App() {
           <Routes>
 
             <Route path="/" element={<SignUP />} />
+             <Route path="/about" element={<About />} />
             <Route path="/deposits" element={<Deposit/>} />
             <Route path="/transactions" element={<Transaction/>} />
             <Route path="/signup" element={<SignUP />} />

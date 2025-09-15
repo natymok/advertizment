@@ -4,7 +4,7 @@ import NavBar from './Navbar';
 import axiosinstance from "./Axios/Axios";
 
 const WithdrawPage = () => {
-  const amounts = [600, 1600, 5000, 18000, 30000, 800000, 1500000, 200000]; // amounts in Birr
+  const amounts = [600, 1600, 6000, 18000, 30000, 80000, 150000, 250000]; // amounts in Birr
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");

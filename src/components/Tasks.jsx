@@ -36,7 +36,7 @@ export default function TasksPage() {
     if (!doneEnabled[id]) {
       setTimeout(() => {
         setDoneEnabled((prev) => ({ ...prev, [id]: true }));
-      }, 5000);
+      }, 20000);
     }
   };
 
