@@ -5,15 +5,15 @@ import axiosinstance from "./Axios/Axios";
 import { useNavigate } from "react-router-dom";
 
 const levels = [
-  { id: "L1", range: 3000 },
-  { id: "L2", range: 8000 },
-  { id: "L3", range: 25500 },
-  { id: "L4", range: 58000 },
-  { id: "L5", range: 135000 },
-  { id: "L6", range: 210000 },
-  { id: "L7", range: 550000 },
-  { id: "L8", range: 950000 },
-  { id: "L9", range: 1350000 },
+  { id: "L1", range: 3000 ,reward:100},
+  { id: "L2", range: 8000 ,reward:200},
+  { id: "L3", range: 25500,reward:300 },
+  { id: "L4", range: 58000 ,reward:400},
+  { id: "L5", range: 135000 ,reward:500},
+  { id: "L6", range: 210000 ,reward:600},
+  { id: "L7", range: 550000,reward:700 },
+  { id: "L8", range: 950000 ,reward:800},
+  { id: "L9", range: 1350000 ,reward:900},
 ];
 
 export default function LevelSelector() {
@@ -88,7 +88,8 @@ export default function LevelSelector() {
               onClick={() => isUnlocked && setSelectedLevel(level)}
             >
               <h2 className="text-xl font-semibold text-gray-800">{level.id}</h2>
-              <p className="text-gray-600">{level.range}</p>
+              <p className="text-gray-600">{level.range}Birr</p>
+              <p className="text-gray-600">{level.reward}Birr/day</p>
               {isUnlocked ? (
                 <FaCheckCircle className="text-green-500 text-2xl mt-2" />
               ) : (
